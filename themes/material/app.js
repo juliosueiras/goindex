@@ -124,7 +124,6 @@ function list_files(path,files){
             item['size'] = "";
         }
 
-        item['modifiedTime'] = utc2beijing(item['modifiedTime']);
         item['size'] = formatFileSize(item['size']);
         if(item['mimeType'] == 'application/vnd.google-apps.folder'){
             html +=`<li class="mdui-list-item mdui-ripple"><a href="${p}" class="folder">
