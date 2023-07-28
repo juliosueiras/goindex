@@ -127,198 +127,164 @@ function list_files(path,files){
         if(item['size']==undefined){
             item['size'] = "";
         }
-        item['modifiedTime'] = utc2beijing(item['modifiedTime']);
+	    	    var parsedName = "";
+	    try {
+	      parsedName = decodeURIComponent(item.name)
+	    } catch(err) {
+	      console.log(item.name)
+	      parsedName = item.name
+	    }
         item['size'] = formatFileSize(item['size']);
         if(item['mimeType'] == 'application/vnd.google-apps.folder'){
         	var p = path+item.name+'/';
             html +=`
 				<tr>
-					<td class="file-name"><a class="icon icon-dir folder" href="${p}">${item.name}/</a></td>
+					<td class="file-name"><a class="icon icon-dir folder" href="${p}">${parsedName}/</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'audio/mid'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-mid" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-mid" href="${p}">${parsedName}/</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'audio/mpeg'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-audio" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-audio" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'image/jpeg'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-image" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-image" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-                    <td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'video/mpeg'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-video" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-video" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/x-7z-compressed'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-7z" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-7z" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/x-zip-compressed'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-zip" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-zip" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'text/plain'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-text" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-text" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'text/xml'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-xml" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-xml" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/x-rar'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-rar" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-rar" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'text/html'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-html" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-html" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/pdf'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-pdf" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-pdf" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-                    <td class="file-date-modified">${item['mimeType']}</td>
-                    <td class="file-date-modified">${item['iconLink']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'text/markdown'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-md" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-md" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/x-msdos-program'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-bat" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-bat" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/x-msdownload'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-x-msdownload" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-x-msdownload" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/x-bittorrent'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-application/x-bittorrent" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-application/x-bittorrent" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/vnd.google-apps.spreadsheet'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-google.spreadsheet" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-google.spreadsheet" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-                    <td class="file-date-modified">application/google.spreadsheet</td>
-                    <td class="file-date-modified">${item['iconLink']}</td>
-                    
 				</tr>
             `;
         } else if(item['mimeType'] == 'application/vnd.google-apps.presentation'){
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-google.presentation" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-google.presentation" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-					<td class="file-date-modified">${item['modifiedTime']}</td>
-					<td class="file-date-modified">application/google.presentation</td>
 				</tr>
             `;
         } else{
 	        var p = path+item.name;
             html += `
 				<tr>
-					<td class="file-name"><a class="icon icon-file" href="${p}">${item.name}</a></td>
+					<td class="file-name"><a class="icon icon-file" href="${p}">${parsedName}</a></td>
 					<td class="file-size">${item['size']}</td>
-                    <td class="file-date-modified">${item['modifiedTime']}</td>
-                    <td class="file-date-modified">${item['mimeType']}</td>
 				</tr>
             `;
         }
@@ -389,3 +355,5 @@ $(function(){
 
     render(path);
 });
+
+	
