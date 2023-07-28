@@ -75,13 +75,13 @@ function title(path){
 // 渲染导航栏
 function nav(path){
 	path = decodeURI(path);
-    $('#heading').html('Index of '+path);
+    $('#heading').html('Index of '+decodeURIComponent(path));
 }
 
 // 渲染文件列表
 function list(path){
 	var content = `
-<tr><th class="file-name">Name</th><th class="file-size">Size</th><th class="file-date-modified">Date Modified</th><th class="file-type">Type</th></tr>
+<tr><th class="file-name">Name</th><th class="file-size">Size</th></tr>
 	`;
 
 	if(path != '/'){
