@@ -134,9 +134,8 @@ function list_files(path,files){
             html +=`<li class="mdui-list-item mdui-ripple"><a href="${p}" class="folder">
 	            <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	            <i class="mdui-icon material-icons">folder_open</i>
-	              ${item.name}
+	              ${decodeURIComponent(item.name)}
 	            </div>
-	            <div class="mdui-col-sm-3 mdui-text-right">${item['modifiedTime']}</div>
 	            <div class="mdui-col-sm-2 mdui-text-right">${item['size']}</div>
 	            </a>
 	        </li>`;
@@ -161,9 +160,8 @@ function list_files(path,files){
             html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a gd-type="${item.mimeType}" href="${p}" class="${c}">
 	          <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	          <i class="mdui-icon material-icons">insert_drive_file</i>
-	            ${item.name}
+	            ${decodeURIComponent(item.name)}
 	          </div>
-	          <div class="mdui-col-sm-3 mdui-text-right">${item['modifiedTime']}</div>
 	          <div class="mdui-col-sm-2 mdui-text-right">${item['size']}</div>
 	          </a>
 	      </li>`;
